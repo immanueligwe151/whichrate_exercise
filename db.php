@@ -4,7 +4,7 @@ $url = parse_url(getenv("mysql://b752a35a364057:b738e4bd@eu-cluster-west-01.k8s.
 $server = $url["host"];
 $username = $url["user"];
 $password = $url["pass"];
-$db = "instructions_db";
+$db = "heroku_b4bc17926cf84d9";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
