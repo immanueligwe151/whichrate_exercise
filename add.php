@@ -9,18 +9,15 @@
         $hire_duration = $_POST['hire-duration'];
         $required_date = $_POST['required-date'];
     
-        // Prepare and bind
         $stmt = $conn->prepare("INSERT INTO instructions (client_ref, claimant_postcode, claimant_vrm, hire_start_date, hire_duration, required_date, completed, created_at) VALUES (?, ?, ?, ?, ?, ?, FALSE, CURRENT_TIMESTAMP)");
         $stmt->bind_param("ssssss", $client_ref, $claimant_postcode, $claimant_vrm, $hire_start_date, $hire_duration, $required_date);
     
-        // Execute the statement
         if ($stmt->execute()) {
-            echo "New task added successfully";
+            echo "New instruction added successfully";
         } else {
             echo "Error: " . $stmt->error;
         }
     
-        // Close the statement and connection
         $stmt->close();
         $conn->close();
     }
@@ -48,25 +45,37 @@
         <section id='view-section'>
             <h3>Fill out the form below to add a new instruction:</h3>
             <form method='POST' action='add.php'>
-                <label for='client-ref' class='form-label'>Reference Number:</label>
-                <input type='text' id='client-ref' name='client-ref' class='form-input' required>
+                <div class='form-section'>
+                    <label for='client-ref' class='form-label'>Reference Number:</label>
+                    <input type='text' id='client-ref' name='client-ref' class='form-input' required>
+                </div>
                 <br>
-                <label for='claimant-postcode' class='form-label'>Postcode:</label>
-                <input type='text' id='claimant-postcode' name='claimant-postcode' class='form-input' required>
+                <div class='form-section'>
+                    <label for='claimant-postcode' class='form-label'>Postcode:</label>
+                    <input type='text' id='claimant-postcode' name='claimant-postcode' class='form-input' required>
+                </div>
                 <br>
-                <label for='claimant-vrm' class='form-label'>Registeration Number:</label>
-                <input type='text' id='claimant-vrm' name='claimant-vrm' class='form-input' required>
+                <div class='form-section'>
+                    <label for='claimant-vrm' class='form-label'>Registeration Number:</label>
+                    <input type='text' id='claimant-vrm' name='claimant-vrm' class='form-input' required>
+                </div>
                 <br>
-                <label for='hire-start-date' class='form-label'>Hire Start Date:</label>
-                <input type='date' id='hire-start-date' name='hire-start-date' class='date-input' required>
+                <div class='form-section'>
+                    <label for='hire-start-date' class='form-label'>Hire Start Date:</label>
+                    <input type='date' id='hire-start-date' name='hire-start-date' class='date-input' required>
+                </div>
                 <br>
-                <label for='hire-duration' class='form-label'>Duration of Hire:</label>
-                <input type='text' id='hire-duration' name='hire-duration' class='form-input' required>
+                <div class='form-section'>
+                    <label for='hire-duration' class='form-label'>Duration of Hire:</label>
+                    <input type='text' id='hire-duration' name='hire-duration' class='form-input' required>
+                </div>
                 <br>
-                <label for='required-date' class='form-label'>Date for Report:</label>
-                <input type='date' id='required-date' name='required-date' class='date-input' required>
+                <div class='form-section'>
+                    <label for='required-date' class='form-label'>Date for Report:</label>
+                    <input type='date' id='required-date' name='required-date' class='date-input' required>
+                </div>
                 <br>
-                <button type='submit'>Add instruction</button>
+                <button type='submit' id='btn-submit'>Add instruction</button>
             </form>
         </section>
         <footer>
