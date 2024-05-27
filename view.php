@@ -26,7 +26,7 @@
         <section id='view-section'>
             <h3>These are the instructions that have been entered:</h3>
             <table>
-                <tr>
+                <tr id='table-heading'>
                     <th>Ref Number</th>
                     <th>Postcode</th>
                     <th>Registeration Number</th>
@@ -37,6 +37,17 @@
                 </tr>
                 <?php
                     if ($result->num_rows > 0) {
+                        while($row = $result->fetch_assoc()) {
+                            $table_row = "<td>" . htmlspecialchars($row["client_ref"]) . "</td>
+                            <td>" . htmlspecialchars($row["claimant_postcode"]) . "</td>
+                            <td>" . htmlspecialchars($row["claimant_vrm"]) . "</td>
+                            <td>" . htmlspecialchars($row["hire_start_date"]) . "</td>
+                            <td>" . htmlspecialchars($row["hire_duration"]) . "</td>
+                            <td>" . htmlspecialchars($row["required_date"]) . "</td>
+                            <td>" . htmlspecialchars($row["created_at"]) . "</td>";
+                            echo "<tr>" . $table_row . "</tr>";
+                            
+                        }
 
                     } else {
                         $error_result = "<tr>
@@ -54,7 +65,7 @@
             </table>
         </section>
         <footer>
-            <p>
+            
         </footer>
     </body>
 </html>
