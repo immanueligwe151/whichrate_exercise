@@ -69,3 +69,7 @@
         </footer>
     </body>
 </html>
+
+<?php
+    $conn->close();
+?>
